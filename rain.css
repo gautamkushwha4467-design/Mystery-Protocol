@@ -12,7 +12,7 @@ h1 {
 }
 
 body {
-    background-image: url('mansion.jpeg');
+    background-image: url('mansion.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -73,3 +73,4 @@ body {
   }
 
 }
+
