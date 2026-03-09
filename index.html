@@ -1,177 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="rain.css">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 90vh;
-            margin: 0;
-        }
 
-        .button-container {
-            display: flex;
-        }
+<link rel="stylesheet" type="text/css" href="rain.css">
 
-        .button-container:first-child {
-            margin-bottom: 10px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mystery Portal</title>
 
-        .image-button {
-            display: inline-block;
-            margin: 10px;
-            cursor: pointer;
-        }
+<style>
 
-        .normal-button {
-            margin-top: 20px;
-    
-        }
-
-        /* Blue */
-.info {
-  border-color: orange;
-  color: orange;
-
+body {
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:90vh;
+margin:0;
 }
 
-.info:hover {
-  background: orange;
-  color: white;
+.button-container{
+display:flex;
 }
-   
-        
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Mystery Portal</title>
+
+.button-container:first-child{
+margin-bottom:10px;
+}
+
+.image-button{
+display:inline-block;
+margin:10px;
+cursor:pointer;
+}
+
+.normal-button{
+margin-top:20px;
+}
+
+.info{
+border:2px solid orange;
+color:orange;
+background:transparent;
+padding:10px 20px;
+font-size:16px;
+cursor:pointer;
+}
+
+.info:hover{
+background:orange;
+color:white;
+}
+
+</style>
+
 </head>
+
 <body>
-    <h1> Mystery portal<br>Victor Sterling</h1>
-    
-    <div class="button-container">
-        <a href="newspaper.png" target="_blank" class="image-button">
-            <img src="news.png" alt="News" width="180" height="180"> <!-- Specify the size here -->
-        </a>
-        <a href="security_access_logs.html" target="_blank" class="image-button">
-            <img src="security.png" alt="Will" width="180" height="180"> <!-- Specify the size here -->
-        </a>
-    </div>
 
-    <div class="button-container">
-        <a href="investigator_notes.html" target="_blank" class="image-button">
-            <img src="detective.png" alt="Detective" width="180" height="200"> 
-        </a>
-        <a href="confidential_confessions.html" target="_blank" class="image-button">
-            <img src="interrogate.png" alt="Interrogate"  width="180" height="200">
-        </a>
-        <a href="Autopsy_report.html" target="_blank" class="image-button">
-            <img src="report.png" alt="Interrogate"  width="180" height="200">
-        </a>
-    </div>
+<h1>Mystery Portal<br>Victor Sterling</h1>
 
-    <!-- Password Protected Button -->
-    <button class="info normal-button" onclick="checkPassword()">
-        Lets Start
-    </button>
+<div class="button-container">
 
-    <script>
+<a href="newspaper.png" target="_blank" class="image-button">
+<img src="news.png" alt="News" width="180" height="180">
+</a>
 
-let messages = [
+<a href="security_access_logs.html" target="_blank" class="image-button">
+<img src="security.png" alt="Security" width="180" height="180">
+</a>
+
+</div>
+
+
+<div class="button-container">
+
+<a href="investigator_notes.html" target="_blank" class="image-button">
+<img src="detective.png" alt="Detective" width="180" height="200">
+</a>
+
+<a href="confidential_confessions.html" target="_blank" class="image-button">
+<img src="interrogate.png" alt="Interrogate" width="180" height="200">
+</a>
+
+<a href="Autopsy_report.html" target="_blank" class="image-button">
+<img src="report.png" alt="Report" width="180" height="200">
+</a>
+
+</div>
+
+
+<!-- Start Button -->
+
+<button class="info normal-button" onclick="startInvestigation()">
+Lets Start
+</button>
+
+
+<script>
+
+/* ---------- FULLSCREEN + PASSWORD ---------- */
+
+function startInvestigation(){
+
+startFullscreen();
+checkPassword();
+
+}
+
+
+/* ---------- FULLSCREEN ---------- */
+
+function startFullscreen(){
+
+let elem=document.documentElement;
+
+if(elem.requestFullscreen){
+elem.requestFullscreen();
+}
+
+}
+
+
+/* ---------- PASSWORD WITH ROTATING MESSAGE ---------- */
+
+let messages=[
 "CLUE: Check the Security Logs carefully.",
 "HINT: The autopsy report reveals the real cause of death.",
 "NOTE: Someone altered the access logs before midnight."
 ];
 
-let index = 0;
+let index=0;
 
-function checkPassword() {
+function checkPassword(){
 
-    // show one of the messages
-    let message = messages[index];
+let message=messages[index];
 
-    // change message index
-    index++;
-    if(index >= messages.length){
-        index = 0;
-    }
-
-    // password prompt with message
-    let password = prompt(message + "\n\nEnter Password:");
-
-    if (password && password.toLowerCase() === "isabella cruz") {
-        window.location.href = "mystery.html";
-    } 
-    else {
-        alert("Incorrect Password!");
-    }
+index++;
+if(index>=messages.length){
+index=0;
 }
 
-// change message every 5 minutes
+let password=prompt(message+"\n\nEnter Password:");
+
+if(password && password.trim().toLowerCase()==="isabella cruz"){
+window.location.href="mystery.html";
+}
+
+else{
+alert("Incorrect Password!");
+}
+
+}
+
+
+/* ---------- CHANGE MESSAGE EVERY 5 MINUTES ---------- */
+
 setInterval(function(){
-    index++;
-    if(index >= messages.length){
-        index = 0;
-    }
-}, 300000); // 5 minutes
 
-</script>
-<script>
-document.addEventListener("visibilitychange", function() {
+index++;
 
-    if (document.hidden) {
-        alert("Warning: Switching tabs is not allowed during investigation!");
-    }
+if(index>=messages.length){
+index=0;
+}
+
+},300000);
+
+
+/* ---------- TAB SWITCH DETECTION ---------- */
+
+document.addEventListener("visibilitychange",function(){
+
+if(document.hidden){
+
+alert("SYSTEM ALERT: Investigation breach detected!");
+
+window.location.href="about:blank";
+
+}
 
 });
-</script>
-<script>
-document.addEventListener("contextmenu", function(e){
-    e.preventDefault();
+
+
+/* ---------- DISABLE RIGHT CLICK ---------- */
+
+document.addEventListener("contextmenu",function(e){
+e.preventDefault();
 });
+
+
+/* ---------- BLOCK SHORTCUT KEYS ---------- */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="F12"){
+e.preventDefault();
+}
+
+if(e.ctrlKey && e.shiftKey && e.key==="I"){
+e.preventDefault();
+}
+
+if(e.ctrlKey && e.key==="u"){
+e.preventDefault();
+}
+
+if(e.ctrlKey && e.key==="c"){
+e.preventDefault();
+}
+
+});
+
 </script>
-    <script>
-document.onkeydown = function(e) {
 
-if (e.keyCode == 123) {
-return false; // F12
-}
-
-if (e.ctrlKey && e.key == "u") {
-return false; // View source
-}
-
-if (e.ctrlKey && e.key == "c") {
-return false; // Copy
-}
-
-};
-</script>
-<script>
-function startFullscreen() {
-
-let elem = document.documentElement;
-
-if (elem.requestFullscreen) {
-elem.requestFullscreen();
-}
-
-}
-</script>
-    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
