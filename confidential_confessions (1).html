@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidential Confessions — NK College Masquerade Gala</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Special+Elite&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: #0a0a0a;
+    background-image: radial-gradient(circle at 50% 0%, #2a0808 0%, #0a0a0a 60%);
+    background-attachment: fixed;
+    color: #e5e5e5;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  h1, h2, .title-font {
+    font-family: 'Cinzel', serif;
+  }
+
+  .typewriter-text {
+    font-family: 'Special Elite', cursive;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(127,29,29,0.3);
+    padding-bottom: 2rem;
+    position: relative;
+  }
+
+  .header-bg-emoji {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.1;
+    pointer-events: none;
+    font-size: 8rem;
+  }
+
+  .header-inner { position: relative; z-index: 10; }
+
+  .header-eyebrow {
+    color: #dc2626;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-family: 'Cinzel', serif;
+  }
+
+  .header-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 5vw, 3.75rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 10px 8px rgba(0,0,0,0.04));
+    line-height: 1.1;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(127,29,29,0.2);
+    border: 1px solid rgba(153,27,27,0.5);
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    backdrop-filter: blur(4px);
+  }
+
+  .header-badge h3 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: #ef4444;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .header-desc {
+    margin-top: 1.5rem;
+    color: #a3a3a3;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.875rem;
+  }
+
+  .header-desc span { color: #ef4444; font-weight: 600; }
+
+  /* ── GRID ── */
+  main {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    main { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1280px) {
+    main { grid-template-columns: repeat(3, 1fr); }
+    article.wide { grid-column: span 1; }
+  }
+
+  /* ── FILE CARD ── */
+  article {
+    background: linear-gradient(145deg, #161616, #1a1a1a);
+    border: 1px solid #333;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.2);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  @media (min-width: 768px) { article { padding: 2rem; } }
+
+  article:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 10px 25px rgba(0,0,0,0.8);
+    border-color: #551a1a;
+  }
+
+  article::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b0000, #ff4c4c);
+    opacity: 0.7;
+  }
+
+  .stamp {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: rgba(139,0,0,0.04);
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+    letter-spacing: 0.5rem;
+    font-family: 'Cinzel', serif;
+    border: 8px solid rgba(139,0,0,0.04);
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+
+  .content-layer {
+    position: relative;
+    z-index: 10;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #404040;
+    padding-bottom: 1rem;
+    gap: 0.5rem;
+  }
+
+  .card-number {
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 1.125rem;
+    display: block;
+    font-family: 'Cinzel', serif;
+  }
+
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .card-role {
+    background: #262626;
+    color: #a3a3a3;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    text-align: right;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .card-role.alert {
+    background: rgba(127,29,29,0.3);
+    border-color: rgba(153,27,27,0.6);
+    color: #fca5a5;
+  }
+
+  .card-body {
+    font-family: 'Special Elite', cursive;
+    color: #d4d4d4;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  @media (min-width: 768px) { .card-body { font-size: 1rem; } }
+
+  .card-body p { margin-bottom: 1rem; }
+  .card-body p:last-child { margin-bottom: 0; }
+
+  .card-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #262626;
+    font-size: 0.75rem;
+    color: #737373;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    max-width: 80rem;
+    margin: 3rem auto 0;
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+
+  .footer-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #737373;
+    font-size: 0.875rem;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #111; }
+  ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #666; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-bg-emoji">🎭</div>
+  <div class="header-inner">
+    <p class="header-eyebrow">Internal Investigation Database</p>
+    <h1 class="header-title">NK College Masquerade Gala</h1>
+    <div class="header-badge">
+      <h3>Confidential Confession Files</h3>
+    </div>
+    <p class="header-desc">
+      <span>MISSION LOG:</span> The following statements have been transcribed directly from the suspect interviews. The contents are strictly classified. Do not alter or distribute these records.
+    </p>
+  </div>
+</header>
+
+<!-- CARDS GRID -->
+<main>
+
+  <!-- ── #01 LEO FERNANDEZ ── -->
+  <article>
+    <div class="stamp">CONFIDENTIAL</div>
+    <div class="content-layer" style="flex-grow:1; display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div>
+          <span class="card-number">#01</span>
+          <h2 class="card-name">Leo Fernandez</h2>
+        </div>
+        <span class="card-role alert">Student Club President — Under Academic Probation</span>
+      </div>
+      <div class="card-body" style="flex-grow:1;">
+        <p>Victor told me club funding would be cut tomorrow morning. I was angry — I won't deny that. But I built these events. I would never destroy the college's reputation by harming its biggest donor.</p>
+        <p>Yes, I was near the drinks station several times. I was coordinating service timing with catering staff. I wrote that note — "It ends tonight." It was about confronting him publicly after his speech.</p>
+        <p>At 11:45 PM, I was in the lighting booth. The technical team can confirm that.</p>
+        <p>There was a second note. I didn't write it — but it was near the drinks station with something close to my handwriting. I found it at 11:30 PM and I destroyed it. I know how that looks. But I panicked.</p>
+      </div>
+    </div>
+    <div class="card-footer content-layer">
+      <span>STATUS: RECORDED</span>
+      <span>FILE: LF-001</span>
+    </div>
+  </article>
+
+  <!-- ── #02 DIANA CARTER ── -->
+  <article>
+    <div class="stamp">CONFIDENTIAL</div>
+    <div class="content-layer" style="flex-grow:1; display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div>
+          <span class="card-number">#02</span>
+          <h2 class="card-name">Diana Carter</h2>
+        </div>
+        <span class="card-role">Head of PR</span>
+      </div>
+      <div class="card-body" style="flex-grow:1;">
+        <p>The vial is prescribed — forensics will confirm that. But I'll admit what I didn't say before. Victor told me privately, two days ago, that he intended to publicly expose financial irregularities within my department during his speech. My career ends if that happens. I needed his speech stopped. Stopped — not him dead. There's a difference.</p>
+        <p>The phone calls — yes, I made them. I was coordinating with a crisis PR consultant. I can't name them publicly without their consent. That's all those calls were.</p>
+      </div>
+    </div>
+    <div class="card-footer content-layer">
+      <span>STATUS: RECORDED</span>
+      <span>FILE: DC-002</span>
+    </div>
+  </article>
+
+  <!-- ── #03 DR. ARIS MALHOTRA ── -->
+  <article>
+    <div class="stamp">CONFIDENTIAL</div>
+    <div class="content-layer" style="flex-grow:1; display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div>
+          <span class="card-number">#03</span>
+          <h2 class="card-name">Dr. Aris Malhotra</h2>
+        </div>
+        <span class="card-role">Rival Donor</span>
+      </div>
+      <div class="card-body" style="flex-grow:1;">
+        <p>Victor's company didn't just embarrass me. They stole six years of my research, invalidated my patent, and buried my startup. The compound they stole — I developed it. It was a Class III botanical derivative. I know exactly what it can do and what its cousins are capable of. That knowledge doesn't make me a murderer.</p>
+        <p>The meeting at 9:40 PM — I'd rather not say who that was. It's a personal matter entirely unrelated to this investigation. I left the hall at 11:42 PM because I felt unwell. That's all.</p>
+        <p>My nephew Raj being found unconscious is the most troubling thing about this entire night. I would never endanger him.</p>
+      </div>
+    </div>
+    <div class="card-footer content-layer">
+      <span>STATUS: RECORDED</span>
+      <span>FILE: AM-003</span>
+    </div>
+  </article>
+
+  <!-- ── #04 MAYA SRINIVASAN ── -->
+  <article>
+    <div class="stamp">CONFIDENTIAL</div>
+    <div class="content-layer" style="flex-grow:1; display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div>
+          <span class="card-number">#04</span>
+          <h2 class="card-name">Maya Srinivasan</h2>
+        </div>
+        <span class="card-role">Senior CS Student</span>
+      </div>
+      <div class="card-body" style="flex-grow:1;">
+        <p>Victor's company patented my algorithm without credit. I confronted him weeks ago.</p>
+        <p>I attended the gala hoping to document proof of my original work. That is why I was near the server corridor earlier in the evening.</p>
+        <p>The USB drive has my project files. But there's something else on it I haven't mentioned until now. I found internal communications showing Victor planned to have three students — including me — formally discredited and expelled to bury the IP theft evidence permanently. I came tonight to expose him. Someone else got there first.</p>
+        <p>The 19 minutes — I was in the east stairwell. Alone. Trying to decide whether to go through with it. Nobody saw me. I know that makes it worse.</p>
+        <p>If I wanted revenge, I would pursue it legally. Destroying him publicly would only hurt my own credibility.</p>
+      </div>
+    </div>
+    <div class="card-footer content-layer">
+      <span>STATUS: RECORDED</span>
+      <span>FILE: MS-004</span>
+    </div>
+  </article>
+
+  <!-- ── #05 JULIAN MERCER ── -->
+  <article>
+    <div class="stamp">CONFIDENTIAL</div>
+    <div class="content-layer" style="flex-grow:1; display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div>
+          <span class="card-number">#05</span>
+          <h2 class="card-name">Julian Mercer</h2>
+        </div>
+        <span class="card-role">Event Caterer</span>
+      </div>
+      <div class="card-body" style="flex-grow:1;">
+        <p>Victor's corporation holds my business in debt — three hundred thousand dollars. What I didn't say before: there is a clause in our contract. Legal reviewed it this morning. If Victor dies, the debt transfers to a shell company within his estate and is effectively dissolved. My business survives if he's gone. I genuinely did not know this until this morning. My lawyer is horrified that I'm telling you this.</p>
+        <p>I was at the podium water at 11:05. I was checking the setup — that's a standard pre-speech service check. I do it at every event. There was nothing wrong with that water when I left it.</p>
+      </div>
+    </div>
+    <div class="card-footer content-layer">
+      <span>STATUS: RECORDED</span>
+      <span>FILE: JM-005</span>
+    </div>
+  </article>
+
+  <!-- ── #06 PROF. ADRIAN VANCE ── -->
+  <article>
+    <div class="stamp">CONFIDENTIAL</div>
+    <div class="content-layer" style="flex-grow:1; display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div>
+          <span class="card-number">#06</span>
+          <h2 class="card-name">Prof. Adrian Vance</h2>
+        </div>
+        <span class="card-role">Senior Faculty — CS</span>
+      </div>
+      <div class="card-body" style="flex-grow:1;">
+        <p>I was furious — I won't pretend otherwise. I told Victor exactly what I thought of him at the cocktail hour in front of half the faculty. Twenty-eight years. He wanted to replace it with corporate training modules and call it education. I called him a coward to his face.</p>
+        <p>After that I went back to the faculty lounge. I walk the building when I'm angry — past the research wing, through the corridors. It helps me think. Leo passed me around 10:15 near the lounge — he can confirm that.</p>
+        <p>If my access card was logged somewhere unexpected, I genuinely cannot explain that. I reported it as potentially misplaced before the event began.</p>
+        <p>As for botanical compounds — yes, they're studied across disciplines here. That's an academic institution for you. I didn't approach the stage once the formal program began.</p>
+      </div>
+    </div>
+    <div class="card-footer content-layer">
+      <span>STATUS: RECORDED</span>
+      <span>FILE: AV-006</span>
+    </div>
+  </article>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+    </svg>
+    Secure connection established. End of files.
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('article').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('article').forEach(c => c.style.borderColor = '#333');
+      card.style.borderColor = '#dc2626';
+    });
+  });
+</script>
+
+</body>
+</html>
