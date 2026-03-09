@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
-<link rel="stylesheet" type="text/css" href="rain.css">
+<head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mystery Portal</title>
 
+<link rel="stylesheet" href="rain.css">
+
 <style>
 
-body {
+body{
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-height:90vh;
+height:100vh;
 margin:0;
+font-family:Arial;
+}
+
+h1{
+text-align:center;
 }
 
 .button-container{
 display:flex;
 }
 
-.button-container:first-child{
-margin-bottom:10px;
-}
-
 .image-button{
-display:inline-block;
 margin:10px;
 cursor:pointer;
+}
+
+.image-button img{
+width:180px;
+height:180px;
 }
 
 .normal-button{
@@ -51,54 +57,80 @@ background:orange;
 color:white;
 }
 
+#viewer{
+margin-top:25px;
+width:850px;
+height:500px;
+border:3px solid orange;
+}
+
 </style>
 
 </head>
+
 
 <body>
 
 <h1>Mystery Portal<br>Victor Sterling</h1>
 
+
 <div class="button-container">
 
-<a href="newspaper.png" target="_blank" class="image-button">
-<img src="news.png" alt="News" width="180" height="180">
+<a onclick="openFile('newspaper.png')" class="image-button">
+<img src="news.png" alt="News">
 </a>
 
-<a href="security_access_logs.html" target="_blank" class="image-button">
-<img src="security.png" alt="Security" width="180" height="180">
+<a onclick="openFile('security_access_logs.html')" class="image-button">
+<img src="security.png" alt="Security">
 </a>
 
 </div>
 
 
+
 <div class="button-container">
 
-<a href="investigator_notes.html" target="_blank" class="image-button">
-<img src="detective.png" alt="Detective" width="180" height="200">
+<a onclick="openFile('investigator_notes.html')" class="image-button">
+<img src="detective.png" alt="Detective">
 </a>
 
-<a href="confidential_confessions.html" target="_blank" class="image-button">
-<img src="interrogate.png" alt="Interrogate" width="180" height="200">
+<a onclick="openFile('confidential_confessions.html')" class="image-button">
+<img src="interrogate.png" alt="Interrogate">
 </a>
 
-<a href="Autopsy_report.html" target="_blank" class="image-button">
-<img src="report.png" alt="Report" width="180" height="200">
+<a onclick="openFile('Autopsy_report.html')" class="image-button">
+<img src="report.png" alt="Report">
 </a>
 
 </div>
 
 
-<!-- Start Button -->
 
 <button class="info normal-button" onclick="startInvestigation()">
 Lets Start
 </button>
 
 
+<!-- Evidence Viewer -->
+<div id="viewer"></div>
+
+
+
 <script>
 
-/* ---------- FULLSCREEN + PASSWORD ---------- */
+
+/* OPEN FILE INSIDE PORTAL */
+
+function openFile(file){
+
+document.getElementById("viewer").innerHTML =
+'<iframe src="'+file+'" width="100%" height="100%" style="border:none;"></iframe>';
+
+}
+
+
+
+/* START INVESTIGATION */
 
 function startInvestigation(){
 
@@ -108,7 +140,8 @@ checkPassword();
 }
 
 
-/* ---------- FULLSCREEN ---------- */
+
+/* FULLSCREEN MODE */
 
 function startFullscreen(){
 
@@ -121,7 +154,8 @@ elem.requestFullscreen();
 }
 
 
-/* ---------- PASSWORD WITH ROTATING MESSAGE ---------- */
+
+/* PASSWORD CLUE SYSTEM */
 
 let messages=[
 "CLUE: Check the Security Logs carefully.",
@@ -136,24 +170,30 @@ function checkPassword(){
 let message=messages[index];
 
 index++;
+
 if(index>=messages.length){
 index=0;
 }
 
-let password=prompt(message+"\n\nEnter Password:");
+let password=prompt(message + "\n\nEnter Password:");
 
 if(password && password.trim().toLowerCase()==="isabella cruz"){
+
 window.location.href="mystery.html";
+
 }
 
 else{
+
 alert("Incorrect Password!");
-}
 
 }
 
+}
 
-/* ---------- CHANGE MESSAGE EVERY 5 MINUTES ---------- */
+
+
+/* MESSAGE ROTATION EVERY 5 MINUTES */
 
 setInterval(function(){
 
@@ -166,7 +206,8 @@ index=0;
 },300000);
 
 
-/* ---------- TAB SWITCH DETECTION ---------- */
+
+/* TAB SWITCH DETECTION */
 
 document.addEventListener("visibilitychange",function(){
 
@@ -181,14 +222,16 @@ window.location.href="about:blank";
 });
 
 
-/* ---------- DISABLE RIGHT CLICK ---------- */
+
+/* DISABLE RIGHT CLICK */
 
 document.addEventListener("contextmenu",function(e){
 e.preventDefault();
 });
 
 
-/* ---------- BLOCK SHORTCUT KEYS ---------- */
+
+/* BLOCK SOME KEYS */
 
 document.addEventListener("keydown",function(e){
 
@@ -201,10 +244,6 @@ e.preventDefault();
 }
 
 if(e.ctrlKey && e.key==="u"){
-e.preventDefault();
-}
-
-if(e.ctrlKey && e.key==="c"){
 e.preventDefault();
 }
 
