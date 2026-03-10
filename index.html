@@ -59,9 +59,12 @@ color:white;
 
 #viewer{
 margin-top:25px;
-width:850px;
-height:500px;
+width:90%;
+height:75vh;
 border:3px solid orange;
+overflow:auto;
+background:black;
+box-shadow:0 0 20px orange;
 }
 
 </style>
@@ -124,7 +127,7 @@ Lets Start
 function openFile(file){
 
 document.getElementById("viewer").innerHTML =
-'<iframe src="'+file+'" width="100%" height="100%" style="border:none;"></iframe>';
+'<iframe src="'+file+'" style="width:100%;height:100%;border:none;"></iframe>';
 
 }
 
@@ -253,4 +256,5 @@ e.preventDefault();
 
 </body>
 </html>
+
 
