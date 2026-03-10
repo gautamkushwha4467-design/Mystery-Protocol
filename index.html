@@ -59,12 +59,11 @@ color:white;
 
 #viewer{
 margin-top:25px;
-width:90%;
-height:75vh;
+width:850px;
+height:80vh;          /* dynamic height based on screen */
 border:3px solid orange;
-overflow:auto;
-background:black;
-box-shadow:0 0 20px orange;
+overflow:auto;        /* allows scrolling */
+background:#111;
 }
 
 </style>
@@ -79,11 +78,11 @@ box-shadow:0 0 20px orange;
 
 <div class="button-container">
 
-<a href="#" onclick="openFile('newspaper.png'); return false;" class="image-button">
+<a onclick="openFile('newspaper.png')" class="image-button">
 <img src="news.png" alt="News">
 </a>
 
-<a href="#" onclick="openFile('security_access_logs.html'); return false;" class="image-button">
+<a onclick="openFile('security_access_logs.html')" class="image-button">
 <img src="security.png" alt="Security">
 </a>
 
@@ -93,15 +92,15 @@ box-shadow:0 0 20px orange;
 
 <div class="button-container">
 
-<a href="#" onclick="openFile('investigator_notes.html'); return false;" class="image-button">
+<a onclick="openFile('investigator_notes.html')" class="image-button">
 <img src="detective.png" alt="Detective">
 </a>
 
-<a  href="#" onclick="openFile('confidential_confessions.html'); return false;" class="image-button">
+<a onclick="openFile('confidential_confessions.html')" class="image-button">
 <img src="interrogate.png" alt="Interrogate">
 </a>
 
-<a href="#" onclick="openFile('Autopsy_report.html'); return false;" class="image-button">
+<a onclick="openFile('Autopsy_report.html')" class="image-button">
 <img src="report.png" alt="Report">
 </a>
 
@@ -256,6 +255,3 @@ e.preventDefault();
 
 </body>
 </html>
-
-
-
