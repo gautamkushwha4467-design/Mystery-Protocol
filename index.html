@@ -1,4 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mystery Portal</title>
+
+<link rel="stylesheet" href="rain.css">
+
+<style>
+
+body{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:100vh;
+margin:0;
+font-family:Arial;
+}
+
+h1{
+text-align:center;
+}
+
+.button-container{
+display:flex;
+}
+
+.image-button{
+margin:10px;
+cursor:pointer;
+}
+
+.image-button img{
+width:180px;
+height:180px;
+}
+
+.normal-button{
+margin-top:20px;
+}
+
+.info{
+border:2px solid orange;
+color:orange;
+background:transparent;
+padding:10px 20px;
+font-size:16px;
+cursor:pointer;
+}
+
+.info:hover{
+background:orange;
+color:white;
+}
+
+#viewer{
+margin-top:25px;
+width:850px;
+height:500px;
+border:3px solid orange;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>Mystery Portal<br>Victor Sterling</h1>
+
+
+<div class="button-container">
+
+<a onclick="openFile('newspaper.png')" class="image-button">
+<img src="news.png" alt="News">
+</a>
+
+<a onclick="openFile('security_access_logs.html')" class="image-button">
+<img src="security.png" alt="Security">
+</a>
+
+</div>
+
+
+
+<div class="button-container">
+
+<a onclick="openFile('investigator_notes.html')" class="image-button">
+<img src="detective.png" alt="Detective">
+</a>
+
+<a onclick="openFile('confidential_confessions.html')" class="image-button">
+<img src="interrogate.png" alt="Interrogate">
+</a>
+
+<a onclick="openFile('Autopsy_report.html')" class="image-button">
+<img src="report.png" alt="Report">
+</a>
+
+</div>
+
+
+
+<button class="info normal-button" onclick="startInvestigation()">
+Lets Start
+</button>
+
+
+<!-- Evidence Viewer -->
+<div id="viewer"></div>
+
+
+
 <script>
+
 
 /* OPEN FILE INSIDE PORTAL */
 
@@ -60,7 +179,7 @@ let password=prompt(message + "\n\nEnter Password:");
 
 if(password && password.trim().toLowerCase()==="isabella cruz"){
 
-window.location.replace("mystery.html");
+window.location.href="mystery.html";
 
 }
 
@@ -94,7 +213,9 @@ document.addEventListener("visibilitychange",function(){
 
 if(document.hidden){
 
-breach();
+alert("SYSTEM ALERT: Investigation breach detected!");
+
+window.location.href="about:blank";
 
 }
 
@@ -110,53 +231,25 @@ e.preventDefault();
 
 
 
-/* BLOCK INSPECT SHORTCUTS */
+/* BLOCK SOME KEYS */
 
 document.addEventListener("keydown",function(e){
 
 if(e.key==="F12"){
 e.preventDefault();
-breach();
 }
 
 if(e.ctrlKey && e.shiftKey && e.key==="I"){
 e.preventDefault();
-breach();
 }
 
 if(e.ctrlKey && e.key==="u"){
 e.preventDefault();
-breach();
 }
 
 });
 
-
-
-/* DEVTOOLS WINDOW DETECTION */
-
-setInterval(function(){
-
-const widthDiff = window.outerWidth - window.innerWidth > 160;
-const heightDiff = window.outerHeight - window.innerHeight > 160;
-
-if(widthDiff || heightDiff){
-breach();
-}
-
-},1000);
-
-
-
-/* BREACH SYSTEM */
-
-function breach(){
-
-alert("SYSTEM ALERT: Investigation breach detected!");
-
-document.body.innerHTML =
-"<h1 style='color:red;text-align:center;margin-top:20%'>ACCESS TERMINATED</h1>";
-
-}
-
 </script>
+
+</body>
+</html>
